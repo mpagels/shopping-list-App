@@ -1,13 +1,9 @@
-import { useState } from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import { Shop } from "./components/Shop";
 
-function App() {
+export const App = () => {
   return (
     <div className="App">
-      <header className="App-header"></header>
+      <Shop />
     </div>
   );
-}
-
-export default App;
+};
