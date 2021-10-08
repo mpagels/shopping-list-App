@@ -18,8 +18,6 @@
 .ShopList--main {
   border: 1px solid goldenrod;
   margin: 1rem;
-  display: flex;
-  flex-wrap: wrap;
 }
 
 .ShopList--list {
@@ -40,13 +38,15 @@
 .MyCartList--main {
   border: 1px solid rebeccapurple;
   margin: 1rem;
-  display: flex;
-  flex-wrap: wrap;
 }
 
 .MyCartList--header {
   font-size: 24px;
 }
 
-/* categories = Milchprodukte , Backwaren , Gemüse ,Snacks , 
+.MyCartList--list {
+  border: 1px solid olivedrab;
+}
+
+/* Feature categories = Milchprodukte , Backwaren , Gemüse ,Snacks , 
 Getränke, WTF, Fleisch, Teigwaren */
