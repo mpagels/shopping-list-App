@@ -3,10 +3,10 @@ import { useState, useEffect } from "react";
 import { ShopList } from "./ShopList";
 import { MyCartList } from "./MyCartList";
 import "./Shop.css";
+import { useLocalStorageState } from "../utils/localStorage";
 
 export const Shop = () => {
-  const [shoppingList, setList] = useState([]);
-
+  const [shoppingList, setList] = useLocalStorageState("shoppingCart", []);
   useEffect(() => {
     const fetchData = async () => {
       try {
