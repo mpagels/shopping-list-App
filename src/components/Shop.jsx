@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-
+import { useLocalStorageState } from "../utils/localStorage";
 import { ShopList } from "./ShopList";
 import { MyCartList } from "./MyCartList";
 import "./Shop.css";
 
 export const Shop = () => {
-  const [shoppingList, setList] = useState([]);
+  const [shoppingList, setshoppingList] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -15,9 +15,10 @@ export const Shop = () => {
         );
         const json = await response.json();
         const jsonCart = json.map((element) => {
-          return { ...element, inCart: false };
+          return { ...element, incart: false };
         });
-        setList(jsonCart);
+        setshoppingList(jsonCart);
+        console.log(jsonCart);
       } catch (error) {
         console.log("Upsi...Error", error);
       }
@@ -25,17 +26,28 @@ export const Shop = () => {
     fetchData();
   }, []);
 
-  const [incart, setcart] = useState([]);
+  const [inshoppingcart, setshoppingcart] = useState([]);
   useEffect(() => {
     const cartlist = shoppingList.filter((element) => element.incart === true);
-    setcart(cartlist);
+    setshoppingcart(cartlist);
   }, [shoppingList]);
 
   return (
     <div className="Shop--main">
       <header className="Shop--header">Wood's Sooper Dooper Shop</header>
-      <ShopList shoplist={shoppingList} />
-      <MyCartList cartlist={incart} />
+      <ShopList
+        // handleClick={(value) => {
+        //   console.log("click returns", value);
+        // }}
+        shoplist={shoppingList}
+      />
+      <MyCartList
+        // handleClick={(value) => {
+        //   value = value;
+        //   console.log(value);
+        // }}
+        cartlist={inshoppingcart}
+      />
     </div>
   );
 };

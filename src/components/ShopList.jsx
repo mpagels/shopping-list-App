@@ -1,17 +1,17 @@
 import { ShopItem } from "./ShopItem";
 
-export const ShopList = ({ shoplist }) => {
+export const ShopList = ({ shoplist, handleClick }) => {
   return (
     <div className="ShopList--main">
       <header className="ShopList--header">Shop Inventory 🏪</header>
       <div className="ShopList--list">
-        {shoplist.map(({ name, category, inCart, id }) => (
+        {shoplist.map(({ name, category, incart, id }) => (
           <ShopItem
-            clicked={(item) => {}}
+            handleClick={handleClick}
             key={id}
             name={name}
             category={category}
-            inCart={inCart}
+            incart={incart}
           />
         ))}
       </div>

@@ -1,10 +1,15 @@
-export const ShopItem = ({ clicking, id, name, category, inCart }) => {
-  const handleClick = (event) => {
-    clicking(event.target);
-    console.log({ name });
-  };
+export const ShopItem = ({ handleClick, name, category, incart }) => {
+  console.log("item returns", incart);
   return (
-    <span className="ShopItem--item" onClick={handleClick} key={id}>
+    <span
+      className="ShopItem--item"
+      category={category}
+      incart={incart}
+      // onClick={(event) => {
+      //   handleClick(event.target);
+      //   return console.log(event.target);
+      // }}
+    >
       {name}
     </span>
   );
