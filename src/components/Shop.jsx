@@ -3,24 +3,26 @@ import { useState, useEffect } from "react";
 import { ShopList } from "./ShopList";
 import { MyCartList } from "./MyCartList";
 import "./Shop.css";
-import { useLocalStorageState } from "../utils/localStorage";
+import { setItem, useLocalStorageState } from "../utils/localStorage";
 
 export const Shop = () => {
   const [shoppingList, setList] = useLocalStorageState("shoppingList", []);
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const response = await fetch(
-          "https://fetch-me.vercel.app/shopping-list.json"
-        );
-        const json = await response.json();
-        const jsonCart = json.map((element) => {
-          return { ...element, incart: false };
-        });
-        setList(jsonCart);
-        console.log("before Click Arr", shoppingList);
-      } catch (error) {
-        console.log("Upsi...Error:", error);
+      if (shoppingList.length < 1) {
+        try {
+          const response = await fetch(
+            "https://fetch-me.vercel.app/shopping-list.json"
+          );
+          const json = await response.json();
+          const jsonCart = json.map((element) => {
+            return { ...element, incart: false };
+          });
+          setList(jsonCart);
+          console.log("before Click Arr", shoppingList);
+        } catch (error) {
+          console.log("Upsi...Error:", error);
+        }
       }
     };
     fetchData();
@@ -45,6 +47,7 @@ export const Shop = () => {
     clickedItem.incart = !clickedItem.incart;
     console.log("after Click", clickedItem);
     console.log("afterClick Arr", shoppingList);
+    setItem("shoppingList", shoppingList);
   };
 
   return (
@@ -52,11 +55,11 @@ export const Shop = () => {
       <header className="Shop--header">Wood's Sooper Dooper Shop</header>
       <ShopList
         shoplist={inshop}
-        handleUpdateOnClick={updateItem /*returns Item Key*/}
+        handleUpdateOnClick={updateItem /*returns Item id*/}
       />
       <MyCartList
         cartlist={incart}
-        handleUpdateOnClick={updateItem /*returns Item Key*/}
+        handleUpdateOnClick={updateItem /*returns Item id*/}
       />
     </div>
   );
