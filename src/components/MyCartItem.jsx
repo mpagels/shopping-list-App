@@ -1,9 +1,19 @@
-export const MyCartItem = ({ name, category, incart, handleUpdateOnClick }) => {
+export const MyCartItem = ({
+  name,
+  category,
+  incart,
+  handleUpdateOnClick,
+  id,
+}) => {
+  const handleClickSelectedItem = () => {
+    handleUpdateOnClick(id);
+  };
+
   return (
     <span
-      className={`ShopItem--${category}`}
-      onClick={handleUpdateOnClick}
+      className="ShopItem--item"
       incart={incart}
+      onClick={handleClickSelectedItem}
     >
       {name}
     </span>

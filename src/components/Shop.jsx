@@ -6,7 +6,11 @@ import "./Shop.css";
 import { setItem, useLocalStorageState } from "../utils/localStorage";
 
 export const Shop = () => {
-  const [shoppingList, setList] = useLocalStorageState("shoppingList", []);
+  const [shoppingList, setShoppingList] = useLocalStorageState(
+    "shoppingList",
+    []
+  );
+
   useEffect(() => {
     const fetchData = async () => {
       if (shoppingList.length < 1) {
@@ -18,7 +22,7 @@ export const Shop = () => {
           const jsonCart = json.map((element) => {
             return { ...element, incart: false };
           });
-          setList(jsonCart);
+          setShoppingList(jsonCart);
           console.log("before Click Arr", shoppingList);
         } catch (error) {
           console.log("Upsi...Error:", error);
@@ -28,39 +32,44 @@ export const Shop = () => {
     fetchData();
   }, []);
 
-  const [inshop, setinshop] = useState([]);
-  const [incart, setcart] = useState([]);
-
-  useEffect(() => {
-    const inshop = shoppingList.filter((element) => element.incart === false);
-    setinshop(inshop);
-    const cartlist = shoppingList.filter((element) => element.incart === true);
-    setcart(cartlist);
-  }, [shoppingList]);
+  const [inshopList, setinshopList] = useState([]);
+  const [incartList, setcartList] = useState([]);
 
   const updateItem = (id) => {
-    const indexOfClickedItem = shoppingList.findIndex(
-      (element) => element.id === id
-    );
     const clickedItem = shoppingList.find((element) => element.id === id);
-    console.log("before Click", clickedItem);
     clickedItem.incart = !clickedItem.incart;
-    console.log("after Click", clickedItem);
-    console.log("afterClick Arr", shoppingList);
-    setItem("shoppingList", shoppingList);
+    setShoppingList([...shoppingList]);
   };
+
+  useEffect(() => {
+    const inshopList = shoppingList.filter(
+      (element) => element.incart === false
+    );
+    setinshopList(inshopList);
+    const cartlist = shoppingList.filter((element) => element.incart === true);
+    setcartList(cartlist);
+  }, [shoppingList /* <---- this was missing Anita ;-)  */]);
+
+  // const [toggleCategorie, setToggleCategoryView] = useState([false]);
 
   return (
     <div className="Shop--main">
       <header className="Shop--header">Wood's Sooper Dooper Shop</header>
+
+      {/* <input type="checkbox">Categories *, **</input> <-- toggle categories wip*/}
+
       <ShopList
-        shoplist={inshop}
+        shoplist={inshopList}
         handleUpdateOnClick={updateItem /*returns Item id*/}
       />
       <MyCartList
-        cartlist={incart}
+        cartlist={incartList}
         handleUpdateOnClick={updateItem /*returns Item id*/}
+        // toggleCategorieView={
+        //   toggleCategorie /* add category symbol and colors / <--- wip maybe hacky? */
+        // }
       />
+      <span>* contains Meat, ** vegan</span>
     </div>
   );
 };

@@ -7,11 +7,12 @@ export const MyCartList = ({ cartlist, handleUpdateOnClick }) => {
       <div className="MyCartList--list">
         {cartlist.map(({ category, name, id, incart }) => (
           <MyCartItem
-          handleUpdateOnClick={handleUpdateOnClick}
+            handleUpdateOnClick={handleUpdateOnClick}
             category={category}
             name={name}
             key={id}
             incart={incart}
+            id={id}
           />
         ))}
       </div>
