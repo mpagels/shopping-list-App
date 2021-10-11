@@ -1,17 +1,18 @@
 import { ShopItem } from "./ShopItem";
 
-export const ShopList = ({ shoplist }) => {
+export const ShopList = ({ shoplist, handleUpdateOnClick }) => {
   return (
     <div className="ShopList--main">
       <header className="ShopList--header">Shop Inventory 🏪</header>
       <div className="ShopList--list">
-        {shoplist.map(({ name, category, inCart, id }) => (
+        {shoplist.map(({ name, category, incart, id }) => (
           <ShopItem
-            clicked={(item) => {}}
+            handleUpdateOnClick={handleUpdateOnClick}
             key={id}
             name={name}
             category={category}
-            inCart={inCart}
+            incart={incart}
+            id={id}
           />
         ))}
       </div>

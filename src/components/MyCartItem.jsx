@@ -1,6 +1,10 @@
-export const MyCartItem = ({ id, name, category, incard }) => {
+export const MyCartItem = ({ name, category, incart, handleUpdateOnClick }) => {
   return (
-    <span className={`ShopItem--${category}`} onClick={handleClick} key={id}>
+    <span
+      className={`ShopItem--${category}`}
+      onClick={(event) => {}}
+      incart={incart}
+    >
       {name}
     </span>
   );
