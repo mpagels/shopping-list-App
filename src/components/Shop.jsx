@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
-
+import styled from "styled-components";
 import { ShopList } from "./ShopList";
 import { MyCartList } from "./MyCartList";
-import "./Shop.css";
-import { setItem, useLocalStorageState } from "../utils/localStorage";
+import { useLocalStorageState } from "../utils/localStorage";
 
 export const Shop = () => {
   const [shoppingList, setShoppingList] = useLocalStorageState(
@@ -53,23 +52,39 @@ export const Shop = () => {
   // const [toggleCategorie, setToggleCategoryView] = useState([false]);
 
   return (
-    <div className="Shop--main">
-      <header className="Shop--header">Wood's Sooper Dooper Shop</header>
+    <StyleShop>
+      <StyleShopHeader>Wood's Sooper Dooper Shop</StyleShopHeader>
 
-      {/* <input type="checkbox">Categories *, **</input> <-- toggle categories wip*/}
+      {/* <input type="checkbox" id="categorie-toggle" name="categorie-toggle">Categories *, **</input> <-- toggle categories wip*/}
 
       <ShopList
         shoplist={inshopList}
-        handleUpdateOnClick={updateItem /*returns Item id*/}
+        handleUpdateOnClick={updateItem /*returns Item id */}
       />
       <MyCartList
         cartlist={incartList}
-        handleUpdateOnClick={updateItem /*returns Item id*/}
+        handleUpdateOnClick={updateItem /*returns Item id */}
         // toggleCategorieView={
         //   toggleCategorie /* add category symbol and colors / <--- wip maybe hacky? */
         // }
       />
-      <span>* contains Meat, ** vegan</span>
-    </div>
+      <StyleFinePrint>* contains Meat, ** vegan</StyleFinePrint>
+    </StyleShop>
   );
 };
+
+const StyleShop = styled.div`
+  border: 1px solid black;
+  background-color: rgba(0, 0, 0, 0.1);
+  margin: 1rem;
+`;
+
+const StyleShopHeader = styled.h3`
+  font-style: italic;
+  text-align: center;
+`;
+
+const StyleFinePrint = styled.span`
+  font-size: 12px;
+  font-style: italic;
+`;

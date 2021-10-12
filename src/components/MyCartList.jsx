@@ -1,10 +1,12 @@
+import styled from "styled-components";
+
 import { MyCartItem } from "./MyCartItem";
 
 export const MyCartList = ({ cartlist, handleUpdateOnClick }) => {
   return (
-    <div className="MyCartList--main">
-      <header className="MyCartList--header">My shopping Cart 🛒</header>
-      <div className="MyCartList--list">
+    <StyleCartListMain>
+      <StyleCartListHeader>My shopping Cart 🛒</StyleCartListHeader>
+      <StyleCartList>
         {cartlist.map(({ category, name, id, incart }) => (
           <MyCartItem
             handleUpdateOnClick={handleUpdateOnClick}
@@ -15,7 +17,23 @@ export const MyCartList = ({ cartlist, handleUpdateOnClick }) => {
             id={id}
           />
         ))}
-      </div>
-    </div>
+      </StyleCartList>
+    </StyleCartListMain>
   );
 };
+
+const StyleCartListMain = styled.div`
+  border: 1px solid rgb(102, 51, 153);
+  background-color: rgba(102, 51, 153, 0.2);
+  margin: 1rem;
+`;
+
+const StyleCartListHeader = styled.h4``;
+
+const StyleCartList = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0.2rem;
+  border: 1px solid rgb(107, 142, 35);
+  background-color: rgba(107, 142, 35, 0.3);
+`;

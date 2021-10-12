@@ -1,3 +1,5 @@
+import styled from "styled-components";
+
 export const MyCartItem = ({
   name,
   category,
@@ -10,12 +12,15 @@ export const MyCartItem = ({
   };
 
   return (
-    <span
-      className="ShopItem--item"
-      incart={incart}
-      onClick={handleClickSelectedItem}
-    >
+    <StyleCartItem incart={incart} onClick={handleClickSelectedItem}>
       {name}
-    </span>
+    </StyleCartItem>
   );
 };
+
+const StyleCartItem = styled.span`
+  background-color: lightgray;
+  border-radius: 3px;
+  padding: 0.2rem;
+  margin: 0.3rem;
+`;
