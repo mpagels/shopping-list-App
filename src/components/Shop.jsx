@@ -50,6 +50,19 @@ export const Shop = () => {
   }, [shoppingList /* <---- this was missing Anita ;-)  */]);
 
   // const [toggleCategorie, setToggleCategoryView] = useState([false]);
+  const categoryDisplay = (category) => {
+    return (
+      {
+        Gemüse: "🥕 **",
+        Fleisch: "🍗 *",
+        Backwaren: "🍞",
+        Getränke: "🥤 **",
+        Milchprodukte: "🐄",
+        Teigwaren: "🥐",
+        WTF: "💥 *",
+      }[category] || "💩" //<-- or default
+    );
+  };
 
   return (
     <StyleShop>
@@ -59,10 +72,12 @@ export const Shop = () => {
 
       <ShopList
         shoplist={inshopList}
+        categoryDisplay={categoryDisplay}
         handleUpdateOnClick={updateItem /*returns Item id */}
       />
       <MyCartList
         cartlist={incartList}
+        categoryDisplay={categoryDisplay}
         handleUpdateOnClick={updateItem /*returns Item id */}
         // toggleCategorieView={
         //   toggleCategorie /* add category symbol and colors / <--- wip maybe hacky? */

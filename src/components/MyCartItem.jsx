@@ -6,6 +6,7 @@ export const MyCartItem = ({
   incart,
   handleUpdateOnClick,
   id,
+  categoryDisplay,
 }) => {
   const handleClickSelectedItem = () => {
     handleUpdateOnClick(id);
@@ -13,7 +14,7 @@ export const MyCartItem = ({
 
   return (
     <StyleCartItem incart={incart} onClick={handleClickSelectedItem}>
-      {name}
+      {name} {categoryDisplay(category)}
     </StyleCartItem>
   );
 };

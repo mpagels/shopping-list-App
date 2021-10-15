@@ -1,7 +1,11 @@
 import styled from "styled-components";
 import { ShopItem } from "./ShopItem";
 
-export const ShopList = ({ shoplist, handleUpdateOnClick }) => {
+export const ShopList = ({
+  shoplist,
+  handleUpdateOnClick,
+  categoryDisplay,
+}) => {
   return (
     <StyleShopListMain>
       <StyleShopListHeader>Shop Inventory 🏪</StyleShopListHeader>
@@ -9,6 +13,7 @@ export const ShopList = ({ shoplist, handleUpdateOnClick }) => {
         {shoplist.map(({ name, category, incart, id }) => (
           <ShopItem
             handleUpdateOnClick={handleUpdateOnClick}
+            categoryDisplay={categoryDisplay}
             key={id}
             name={name}
             category={category}

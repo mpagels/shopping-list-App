@@ -6,28 +6,8 @@ export const ShopItem = ({
   name,
   category,
   incart,
+  categoryDisplay,
 }) => {
-  const categoryDisplay = (category) => {
-    switch (category) {
-      case "Gemüse":
-        return "🥕";
-      case "Fleisch":
-        return "🍗";
-      case "Backwaren":
-        return "🍞";
-      case "Getränke":
-        return "🥤";
-      case "Milchprodukte":
-        return "🐄";
-      case "Teigwaren":
-        return "🥐";
-      case "WTF":
-        return "💥";
-      default:
-        return "💩";
-    }
-  };
-
   const handleClickSelectedItem = () => {
     handleUpdateOnClick(id);
     console.log(category);

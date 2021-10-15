@@ -2,7 +2,11 @@ import styled from "styled-components";
 
 import { MyCartItem } from "./MyCartItem";
 
-export const MyCartList = ({ cartlist, handleUpdateOnClick }) => {
+export const MyCartList = ({
+  cartlist,
+  handleUpdateOnClick,
+  categoryDisplay,
+}) => {
   return (
     <StyleCartListMain>
       <StyleCartListHeader>My shopping Cart 🛒</StyleCartListHeader>
@@ -10,6 +14,7 @@ export const MyCartList = ({ cartlist, handleUpdateOnClick }) => {
         {cartlist.map(({ category, name, id, incart }) => (
           <MyCartItem
             handleUpdateOnClick={handleUpdateOnClick}
+            categoryDisplay={categoryDisplay}
             category={category}
             name={name}
             key={id}
